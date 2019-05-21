@@ -9,7 +9,6 @@ class RenderMap extends Component {
 
   hide(event) {
     event.preventDefault();
-    
   }
 
   render() {

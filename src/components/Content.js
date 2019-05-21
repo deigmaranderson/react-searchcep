@@ -24,9 +24,9 @@ class Content extends Component {
 
     callCep(data) {
         if (!data.hasOwnProperty('erro')) {
-            let formatAddress = data.logradouro;
-            formatAddress = formatAddress.split(' ').join('+');
-            fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=Mjh9yH5FQo6edtgJKZe8CSi70AAhsRFj&inFormat=kvp&outFormat=json&location=${formatAddress}%20-%20${data.localidade}&thumbMaps=false`)
+            const formatAddress = data.logradouro.split(' ').join('+')
+            const formatLocal = data.localidade.split(' ').join('+')
+            fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=Mjh9yH5FQo6edtgJKZe8CSi70AAhsRFj&inFormat=kvp&outFormat=json&location=${formatAddress}%20-%20${formatLocal}&thumbMaps=false`)
                 .then(response => response.json())
                 .then(ll => {
                     const latlgn = ll.results[0].locations[0].latLng
@@ -58,6 +58,7 @@ class Content extends Component {
 
     mascaraCep(val) {
         let cepTyped = val.target.value
+        this.handler()
         if(cepTyped.length === 5) {
             let formatTyped = cepTyped
             val.target.value = formatTyped + '-'
@@ -66,6 +67,9 @@ class Content extends Component {
 
     handler() {
         this.setState({
+            cepReturned: null,
+                        lat: null,
+                        lng: null,
             visible: false
         })
     }
