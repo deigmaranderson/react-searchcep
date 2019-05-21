@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
 import { Map as LeafletMap, TileLayer, Marker } from 'react-leaflet';
+import "leaflet/dist/leaflet.css";
+import L from 'leaflet';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
+let DefaultIcon = L.icon({
+   iconUrl: icon,
+   shadowUrl: iconShadow,
+   iconSize: [24,36],
+   iconAnchor: [12,36]
+ });
+
+ L.Marker.prototype.options.icon = DefaultIcon; 
 class RenderMap extends Component {
   constructor() {
     super()
@@ -21,7 +33,7 @@ class RenderMap extends Component {
           <p>{cep.bairro}</p>
           <p>{cep.localidade} - {cep.uf}</p>
           <p>{cep.cep}</p>
-          <LeafletMap
+          <LeafletMap style={{ width: '100%', height: '300px' }}
             center={[this.props.lat, this.props.lng]}
             zoom={16}
             maxZoom={20}
@@ -38,7 +50,7 @@ class RenderMap extends Component {
           </LeafletMap>
         </div>
       );
-    }  
+    }
   }
 }
 

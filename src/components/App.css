@@ -16,6 +16,11 @@ html {
   color: rgba(0, 0, 0, 0.8);
   font-size: 1em;
 }
+header h1 {
+  font-size: 28px;
+  margin-left: 20px;
+  color: #ffffff;
+}
 .container {
   width: 100vw;
   display: flex;
@@ -68,8 +73,8 @@ html {
 .leaflet-container {
   overflow: visible;
   position: relative !important;
-  margin-top: 180px;
-  margin-left: 170px;
+  margin-top: 20px;
+  margin-left: 0px;
 }
 
 @media (max-width: 850px) {
