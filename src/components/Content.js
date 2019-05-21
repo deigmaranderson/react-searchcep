@@ -26,7 +26,8 @@ class Content extends Component {
         if (!data.hasOwnProperty('erro')) {
             const formatAddress = data.logradouro.split(' ').join('+')
             const formatLocal = data.localidade.split(' ').join('+')
-            fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=Mjh9yH5FQo6edtgJKZe8CSi70AAhsRFj&inFormat=kvp&outFormat=json&location=${formatAddress}%20-%20${formatLocal}&thumbMaps=false`)
+            
+            fetch(`https://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_SECRET_CODE}&inFormat=kvp&outFormat=json&location=${formatAddress}%20-%20${formatLocal}&thumbMaps=false`)
                 .then(response => response.json())
                 .then(ll => {
                     const latlgn = ll.results[0].locations[0].latLng
